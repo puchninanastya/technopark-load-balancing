@@ -7,9 +7,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     expose:
-      - 8081
-      - 8086
+      - 80
     ports:
-      - 8081:8081
-      - 8086:8086
+      - 80:80
     command: "./run.sh"
