@@ -22,6 +22,10 @@ RUN curl -s -o /tmp/influxdb_${INFLUXDB_VERSION}_amd64.deb http://dl.influxdata.
   rm /tmp/influxdb_${INFLUXDB_VERSION}_amd64.deb && \
   rm -rf /var/lib/apt/lists/*
 
+# ALSO NEED TO DO (MANUAL SETTING UP):
+# curl -i -XPOST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE telegraf"
+# CREATE USER <username> WITH PASSWORD '<password>' WITH ALL PRIVILEGES
+
 # Installing and setting up Grafana
 ENV GRAFANA_VERSION 5.3.1
 RUN apt-get update && sudo apt-get install -y adduser libfontconfig
