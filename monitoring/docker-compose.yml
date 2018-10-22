@@ -1,15 +1,17 @@
 version: '3'
 
 services:
-  backend:
+  monitoring:
     restart: always
     build: 
       context: ./
       dockerfile: Dockerfile
     expose:
-      - 8081
+      - 8083
       - 8086
+      - 3000
     ports:
-      - 8081:8081
+      - 8083:8083
       - 8086:8086
+      - 3000:3000
     command: "./run.sh"
