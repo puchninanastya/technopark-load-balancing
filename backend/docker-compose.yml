@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  backend:
+    restart: always
+    environment:
+      INFLUXDB_VERSION: "1.6.4"
+      TELEGRAF_VERSION: "1.8.2-1"
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    expose:
+      - 8081
+      - 8086
+    ports:
+      - 8081:8081
+      - 8086:8086
+    command: "./run.sh"
