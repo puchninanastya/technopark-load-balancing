@@ -21,7 +21,8 @@ RUN apt-get update && \
 # Installing and setting up Nginx
 RUN sudo apt-get update && sudo apt-get -y install nginx
 RUN rm /etc/nginx/sites-enabled/default
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY backend.conf /etc/nginx/conf.d/backend.conf
+COPY src/static/ /srv/www/backend/static
 
 # Installing and setting up Telegraf
 ENV TELEGRAF_VERSION 1.8.2-1
