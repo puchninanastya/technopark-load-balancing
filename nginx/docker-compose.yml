@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  balancer:
+    restart: always
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    expose:
+      - 80
+    ports:
+      - 80:80
+    command: "./run.sh"

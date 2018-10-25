@@ -8,8 +8,8 @@ RUN apt-get update && \
     apt-get install apt-transport-https
 
 # Setting up Nginx with configs and static files
-ADD nginx.conf /etc/nginx/nginx.conf
-ADD balancer.conf /etc/nginx/conf.d/
+ADD configs/nginx.conf /etc/nginx/nginx.conf
+ADD configs/balancer.conf /etc/nginx/conf.d/
 COPY static/ /srv/www/backend/static
 
 # Installing and setting up Telegraf
@@ -19,7 +19,7 @@ RUN curl -s -o /tmp/telegraf_${TELEGRAF_VERSION}_amd64.deb \
   dpkg -i /tmp/telegraf_${TELEGRAF_VERSION}_amd64.deb && \
   rm /tmp/telegraf_${TELEGRAF_VERSION}_amd64.deb && \
   rm -rf /var/lib/apt/lists/*
-COPY telegraf.conf /etc/telegraf/telegraf.conf
+COPY configs/telegraf.conf /etc/telegraf/telegraf.conf
 
 # Starting Nginx and Telegraf services
 CMD ["./run.sh"]
