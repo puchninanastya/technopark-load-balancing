@@ -5,11 +5,10 @@ MAINTAINER Puchnina Anastasia
 # Setting up backend django project
 RUN mkdir -p /usr/src/backend
 WORKDIR /usr/src/backend
-COPY /src/requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
+RUN pip install --no-cache-dir -r src/requirements.txt
 
-# Exposing Gunicorn 8081
+# Exposing Nginx 80 port
 EXPOSE 80
 
 # Setting up Debian with tools
