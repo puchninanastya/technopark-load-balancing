@@ -5,7 +5,7 @@ MAINTAINER Puchnina Anastasia
 # Setting up backend django project
 RUN mkdir -p /usr/src/backend
 WORKDIR /usr/src/backend
-COPY requirements.txt ./
+COPY /src/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
@@ -21,7 +21,7 @@ RUN apt-get update && \
 # Installing and setting up Nginx
 RUN sudo apt-get update && sudo apt-get -y install nginx
 RUN rm /etc/nginx/sites-enabled/default
-COPY backend.conf /etc/nginx/conf.d/backend.conf
+COPY configs/backend.conf /etc/nginx/conf.d/backend.conf
 COPY src/static/ /srv/www/backend/static
 
 # Installing and setting up Telegraf
@@ -31,7 +31,7 @@ RUN curl -s -o /tmp/telegraf_${TELEGRAF_VERSION}_amd64.deb \
   dpkg -i /tmp/telegraf_${TELEGRAF_VERSION}_amd64.deb && \
   rm /tmp/telegraf_${TELEGRAF_VERSION}_amd64.deb && \
   rm -rf /var/lib/apt/lists/*
-COPY telegraf.conf /etc/telegraf/telegraf.conf
+COPY configs/telegraf.conf /etc/telegraf/telegraf.conf
 
 # Starting Telegraf service and backend Gunicorn
 CMD ["./run.sh"]

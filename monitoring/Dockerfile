@@ -12,8 +12,8 @@ RUN apt-get update && \
     apt-get install sudo && \
     apt-get install -y curl
 
-# Exposing InfluxDB 8083, 8086 and Grafana 3000 ports
-EXPOSE 8083 8086 3000
+# Exposing InfluxDB 8086 and Grafana 3000 ports
+EXPOSE 8086 3000
 
 # Installing and setting up InfluxDB
 ENV INFLUXDB_VERSION 1.6.4
@@ -21,10 +21,7 @@ RUN curl -s -o /tmp/influxdb_${INFLUXDB_VERSION}_amd64.deb http://dl.influxdata.
   dpkg -i /tmp/influxdb_${INFLUXDB_VERSION}_amd64.deb && \
   rm /tmp/influxdb_${INFLUXDB_VERSION}_amd64.deb && \
   rm -rf /var/lib/apt/lists/*
-
-# ALSO NEED TO DO (MANUAL SETTING UP):
-# curl -i -XPOST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE telegraf"
-# CREATE USER <username> WITH PASSWORD '<password>' WITH ALL PRIVILEGES
+COPY configs/influxdb.conf /etc/influxdb/influxdb.conf
 
 # Installing and setting up Grafana
 ENV GRAFANA_VERSION 5.3.1
@@ -34,7 +31,6 @@ RUN curl -s -o /tmp/grafana_${GRAFANA_VERSION}_amd64.deb s3-us-west-2.amazonaws.
   rm /tmp/grafana_${GRAFANA_VERSION}_amd64.deb && \
   rm -rf /var/lib/apt/lists/*
 
-
-RUN sudo chmod +x ./run.sh
 # Starting InfluxDB and Grafana services
+RUN sudo chmod +x ./run.sh
 CMD ["./run.sh"]
