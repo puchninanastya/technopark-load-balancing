@@ -2,6 +2,7 @@ version: '3'
 
 services:
   monitoring:
+    container_name: monitoring-container
     restart: always
     build: 
       context: ./

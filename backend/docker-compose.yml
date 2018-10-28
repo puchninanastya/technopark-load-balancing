@@ -2,6 +2,7 @@ version: '3'
 
 services:
   backend:
+    container_name: backend-container
     restart: always
     build: 
       context: ./

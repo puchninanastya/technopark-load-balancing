@@ -2,6 +2,7 @@ version: '3'
 
 services:
   balancer:
+    container_name: balancer-container
     restart: always
     build: 
       context: ./
