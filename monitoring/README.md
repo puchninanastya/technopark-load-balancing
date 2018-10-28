@@ -60,3 +60,13 @@ name
 _internal
 telegraf
 ```
+
+### Setting up grafana dashboards
+
+Go to ```http://<your_grafana_server_ip>:3000/``` and login with default admin (pwd admin) user.
+
+Add new datasource with next settings:
+
+![alt text](data_source.png "Data source settings")
+
+Import all dashboards from dashboards directory with json files.
