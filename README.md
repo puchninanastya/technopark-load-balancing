@@ -15,12 +15,12 @@ Using [DigitalOcean](https://www.digitalocean.com) Docker droplets.
 - Load balancing based on Round Robin algorithm;
 - Upstream settings;
 - Proxy to one of three backends;
-- Telegraf service.
+- [Telegraf](https://docs.influxdata.com/telegraf/v1.8/) service.
 
 ### Backends servers
 - AskPuchnina Django project;
-- Telegraf service.
+- [Telegraf](https://docs.influxdata.com/telegraf/v1.8/) service.
 
 ### Monitoring server
-- InfluxDB;
-- Gragana.
+- [InfluxDB](https://docs.influxdata.com/influxdb/v1.6/) service;
+- [Grafana](https://grafana.com) service.
